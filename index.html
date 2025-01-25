@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hayvan Bakım Kayıtları</title>
+</head>
+<body>
+    <h1>Hayvan Bakım Kayıtları</h1>
+
+    <!-- Yeni kayıt ekleme formu -->
+    <form action="/add" method="post">
+        <input type="text" name="tur" placeholder="Hayvan Türü">
+        <input type="text" name="baslama" placeholder="Başlama Tarihi (YYYY-MM-DD)">
+        <input type="text" name="kisi" placeholder="İlgilenen Kişi">
+        <select name="durum">
+            <option value="Devam Ediyor">Devam Ediyor</option>
+            <option value="Tamamlandı">Tamamlandı</option>
+        </select>
+        <input type="text" name="bitis" placeholder="Bitiş Tarihi (Opsiyonel)">
+        <input type="text" name="ilaclar" placeholder="İlaçlar (Virgülle Ayırın)">
+        <input type="text" name="notlar" placeholder="Notlar (Opsiyonel)">
+        <button type="submit">Ekle</button>
+    </form>
+
+    <!-- Kayıt listesi -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Hayvan Türü</th>
+            <th>Başlama Tarihi</th>
+            <th>İlgilenen Kişi</th>
+            <th>Tedavi Durumu</th>
+            <th>Bitiş Tarihi</th>
+            <th>İlaçlar</th>
+            <th>Notlar</th>
+            <th>Sil</th>
+        </tr>
+        {% for kayit in bakim_kayitlari %}
+        <tr>
+            <td>{{ kayit.ID }}</td>
+            <td>{{ kayit.Tur }}</td>
+            <td>{{ kayit.Baslama }}</td>
+            <td>{{ kayit.Kisi }}</td>
+            <td>{{ kayit.Durum }}</td>
+            <td>{{ kayit.Bitis }}</td>
+            <td>{{ kayit.Ilaclar }}</td>
+            <td>{{ kayit.Notlar }}</td>
+            <td><a href="/delete/{{ kayit.ID }}">Sil</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/ilaclar">İlaçları Yönet</a>
+</body>
+</html>

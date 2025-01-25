@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlaç Yönetimi</title>
+</head>
+<body>
+    <h1>İlaç Yönetimi</h1>
+    <ul>
+        {% for ilac in ilac_listesi %}
+        <li>
+            {{ ilac }} <a href="/delete_ilac/{{ ilac }}">Sil</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <form action="/add_ilac" method="post">
+        <input type="text" name="ilac_adi" placeholder="İlaç Adı">
+        <button type="submit">Ekle</button>
+    </form>
+    <a href="/">Ana Sayfaya Dön</a>
+</body>
+</html>
